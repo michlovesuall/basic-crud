@@ -1,0 +1,14 @@
+<?php
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=basic-crud", $username, $password);
+
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo json_encode(['message' => 'Connected Succesfully']);
+} catch (PDOException $e) {
+    echo json_encode(['message' => 'Connection failed: ' . $e->getMessage()]);
+}
