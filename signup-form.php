@@ -1,7 +1,6 @@
-<?
-require "config.php";
+<?php
+require 'config.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +27,7 @@ require "config.php";
         <div style="display: none;" class="alert alert-danger" role="alert">
           Account creation failed! Please double check your inputs.
         </div>
+
         <h1 class="text-center">Sign Up</h1>
         <div class="container d-flex flex-column">
           <div class="mb-3 row">

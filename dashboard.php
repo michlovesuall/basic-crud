@@ -2,7 +2,6 @@
 
 require("config.php");
 
-
 ?>
 
 <!DOCTYPE html>

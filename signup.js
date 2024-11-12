@@ -40,11 +40,18 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       signupFailedAlert.style.display = "none";
 
-      const formData = new FormData(this);
+      const formData = {
+        email: emailField.value,
+        username: unameField.value,
+        firstname: fnameField.value,
+        middlename: mnameField.value,
+        lastname: lnameField.value,
+        password: passwordField.value,
+      };
 
       // Insert Data here using fetch API
       try {
-        const response = await fetch("insert.php", {
+        const response = await fetch("create.php", {
           method: "POST",
           headers: {
             "Content-type": "application/json",
@@ -52,9 +59,15 @@ document.addEventListener("DOMContentLoaded", function () {
           body: JSON.stringify(formData),
         });
 
-        const result = await response.json();
-        console.log(result);
-      } catch (error) {}
+        if (response.ok) {
+          window.location.href = "dashboard.php";
+        } else {
+          console.error("Response failed with status:", response.status);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        signupFailedAlert.style.display = "block";
+      }
     } else {
       console.error("Error: ", error);
       signupFailedAlert.style.display = "block";

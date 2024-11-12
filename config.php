@@ -6,9 +6,10 @@ $password = "";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=basic-crud", $username, $password);
-
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo json_encode(['message' => 'Connected Succesfully']);
+    echo "Connected Successfully!";
 } catch (PDOException $e) {
-    echo json_encode(['message' => 'Connection failed: ' . $e->getMessage()]);
+    // Return error response
+    echo json_encode(['status' => 'error', 'message' => 'Connection failed: ' . $e->getMessage()]);
+    exit(); // Stop further execution if connection fails
 }
