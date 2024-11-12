@@ -1,6 +1,7 @@
 <?php
 
-require("config.php");
+require("delete.php");
+require("read.php");
 
 ?>
 
@@ -38,18 +39,26 @@ require("config.php");
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>
-            <button type="button" class="btn btn-primary">Update</button>
-            <button type="button" class="btn btn-danger">Delete</button>
-          </td>
-        </tr>
+        <?php if (isset($users) && count($users) > 0): ?>
+          <?php foreach ($users as $user): ?>
+            <tr>
+              <th scope="row"><?= htmlspecialchars($user['id']); ?></th>
+              <td><?= htmlspecialchars($user['username']); ?></td>
+              <td><?= htmlspecialchars($user['firstname']); ?></td>
+              <td><?= htmlspecialchars($user['middlename']); ?></td>
+              <td><?= htmlspecialchars($user['lastname']); ?></td>
+              <td><?= htmlspecialchars($user['email']); ?></td>
+              <td>
+                <a href="update.php?id=<?= htmlspecialchars($user['id']); ?>" class="btn btn-primary">Update</a>
+                <a href="delete.php?id=<?= htmlspecialchars($user['id']); ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <tr>
+            <td colspan="7" class="text-center">No users found.</td>
+          </tr>
+        <?php endif; ?>
       </tbody>
     </table>
   </div>
